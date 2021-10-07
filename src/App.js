@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 // components
 import Navbar from "./components/Navbar";
 import CharacterList from "./components/CharacterList";
@@ -9,11 +10,11 @@ function App() {
   const url = "https://rickandmortyapi.com/api/character";
 
   const fetchCharacters = (url) => {
-    fetch(url)
-      .then((response) => response.json())
+    axios
+      .get(url)
       .then((data) => {
-        setCharacters(data.results);
-        setInfo(data.info);
+        setCharacters(data.data.results);
+        setInfo(data.data.info);
       })
       .catch((error) => {
         console.log(error);
